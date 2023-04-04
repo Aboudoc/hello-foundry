@@ -5,13 +5,13 @@ source /Users/aboutika/.bashrc
 forge init
 ```
 
-## To compile:
+## Compile
 
 ```
 forge build
 ```
 
-## To test:
+## Test
 
 ```
 forge test
@@ -19,7 +19,7 @@ forge test -vvv
 forge test --help
 ```
 
-## To test only one file:
+## Targeted Test
 
 ```
 forge test --match-path test/HelloWorld.t.sol
@@ -36,7 +36,7 @@ Failing test: we want to test for errors
 
 Calling the `dec()` function will throw an error if there is an underflow (dec 0)
 
-## Gas report option:
+## Gas Reporter
 
 ```
 forge test --match-path test/Counter.t.sol --gas-report
@@ -61,7 +61,7 @@ Test result: ok. 4 passed; 0 failed; finished in 871.65µs
 | inc                              | 444             | 15044 | 22344  | 22344 | 3       |
 ```
 
-## Set compiler version:
+## Set Compiler Version
 
 Inside `foundry.toml` add:
 
