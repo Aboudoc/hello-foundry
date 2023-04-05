@@ -67,7 +67,13 @@ Inside `foundry.toml` add:
 
 ```
 solc_version = "0.8.18"
-
 ```
 
-Set optimizer configurations:
+## Set Optimizer configurations
+
+```
+optimizer = true
+optimizer_runs = 200
+```
+
+All of the configurations available for your `foundry` project can be found [here](https://github.com/foundry-rs/foundry/tree/master/config)
