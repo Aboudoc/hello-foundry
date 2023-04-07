@@ -77,3 +77,63 @@ optimizer_runs = 200
 ```
 
 All of the configurations available for your `foundry` project can be found [here](https://github.com/foundry-rs/foundry/tree/master/config)
+
+## Ramapping
+
+There are 2 ways to import `libraries` inside your Foundry project
+
+### Using `forge` command line
+
+```
+forge install rari-capital/solmate
+```
+
+Then import the library inside the contract like so:
+
+```javascript
+import "@solmate/tokens/ERC20.sol";
+```
+
+To see what files are installed:
+
+```
+forge remappings
+```
+
+If we wanted to update the `solmate` package, we can do it like so:
+
+```
+forge update lib/solmate
+```
+
+To remove the library:
+
+```
+forge remove solmate
+```
+
+### Using `npm` command line
+
+```
+npm i @openzeppelin/contracts
+```
+
+Then import a library inside the contract like so:
+
+```javascript
+import "@openzeppelin/contracts/access/Ownable.sol";
+```
+
+Then `contract TestOz is Ownable {}`
+
+After that let's create a file nammed `remappings.txt`
+
+We need to tell `forge` where to look for when it refers to `@openzeppelin`
+
+Inside the `remappings.txt` file:
+
+```
+@openzepellin/=node_modules/@openzeppelin
+```
+
+### Format code
