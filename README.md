@@ -91,7 +91,7 @@ forge install rari-capital/solmate
 Then import the library inside the contract like so:
 
 ```javascript
-import "@solmate/tokens/ERC20.sol";
+import "solmate/tokens/ERC20.sol";
 ```
 
 Then `contract Token is ERC20("name", "symbol", 18) {}`
@@ -137,7 +137,7 @@ We need to tell `forge` where to look for when it refers to `@openzeppelin`
 Inside the `remappings.txt` file:
 
 ```
-@openzepellin/=node_modules/@openzeppelin
+@openzeppelin/=node_modules/@openzeppelin
 ```
 
 ### Format code
