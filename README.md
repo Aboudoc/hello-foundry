@@ -196,7 +196,7 @@ Logs:
 Test result: ok. 1 passed; 0 failed; finished in 12.23ms
 ```
 
-### Log int
+## Log int
 
 For more details on which values you can log with the console log, using VS CODE you can select `log` and type `F12` to get access to actual code of `console.sol` (or follow the path: lib/forge-std/src/console.sol)
 
@@ -204,7 +204,7 @@ Inside this file you can find all the variations for the messages that it can lo
 
 However, it can not log `int`
 
-=> You will need to use a specialize function `logInt()`
+**_We will need to use a specialize function `logInt()`_**
 
 If we try using console.log as below, we'll get a compilation error:
 
@@ -220,3 +220,5 @@ contract ConsoleTest is Test {
 ```
 
 We'll need to use `console.logInt(x)` to log `-1`
+
+## Authentication
