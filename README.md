@@ -140,8 +140,83 @@ Inside the `remappings.txt` file:
 @openzeppelin/=node_modules/@openzeppelin
 ```
 
-### Format code
+## Format code
 
 ```
-forge frmt
+forge fmt
 ```
+
+## Console Log
+
+Let's examples of console logging in the `Counter.sol`contract, and also inside the `Counter.t.sol` test, and finally how to log `int`
+
+### Log from contract
+
+To print something to the `terminal` when we run the test and when we call the function `inc()`
+
+Inside `Counter.sol`, import:
+
+```javascript
+import "forge-std/console.log.sol";
+```
+
+This is a feature only available for testing, so make sure to remove it when deploying a contract
+
+```javascript
+function inc() public {
+    console.log("Here", count);
+    count += 1;
+}
+```
+
+Execute the test to see the message logged inside the terminal (-vv needed to print):
+
+```
+forge test --match-path test/Counter.t.sol -vv
+```
+
+### Log from test
+
+We can also console inside a test contract => `Console.t.sol`
+
+Execute the following command:
+
+```
+forge test --match-path test/Console.t.sol -vv
+```
+
+Here is the result:
+
+```
+Running 1 test for test/Console.t.sol:ConsoleTest
+[PASS] testLogSomething() (gas: 3392)
+Logs:
+  Log something here 123
+
+Test result: ok. 1 passed; 0 failed; finished in 12.23ms
+```
+
+### Log int
+
+For more details on which values you can log with the console log, using VS CODE you can select `log` and type `F12` to get access to actual code of `console.sol` (or follow the path: lib/forge-std/src/console.sol)
+
+Inside this file you can find all the variations for the messages that it can log.
+
+However, it can not log `int`
+
+=> You will need to use a specialize function `logInt()`
+
+If we try using console.log as below, we'll get a compilation error:
+
+```javascript
+contract ConsoleTest is Test {
+    function testLogSomething() public {
+        console.log("Log something here", 123);
+
+        int x = -1;
+        console.log(x);
+    }
+}
+```
+
+We'll need to use `console.logInt(x)` to log `-1`
