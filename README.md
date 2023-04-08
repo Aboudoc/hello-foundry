@@ -94,6 +94,8 @@ Then import the library inside the contract like so:
 import "@solmate/tokens/ERC20.sol";
 ```
 
+Then `contract Token is ERC20("name", "symbol", 18) {}`
+
 To see what files are installed:
 
 ```
@@ -112,11 +114,13 @@ To remove the library:
 forge remove solmate
 ```
 
-### Using `npm` command line
+### Using `npm` command line with `remappings.txt`
 
 ```
 npm i @openzeppelin/contracts
 ```
+
+It creates a new folder => `node_modules`
 
 Then import a library inside the contract like so:
 
@@ -137,3 +141,7 @@ Inside the `remappings.txt` file:
 ```
 
 ### Format code
+
+```
+forge frmt
+```
