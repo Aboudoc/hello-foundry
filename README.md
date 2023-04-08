@@ -196,7 +196,7 @@ Logs:
 Test result: ok. 1 passed; 0 failed; finished in 12.23ms
 ```
 
-## Log int
+### Log int
 
 For more details on which values you can log with the console log, using VS CODE you can select `log` and type `F12` to get access to actual code of `console.sol` (or follow the path: lib/forge-std/src/console.sol)
 
