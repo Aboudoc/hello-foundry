@@ -287,7 +287,7 @@ What happens if we wanted to call a function multiple times using the same `msg.
 We can do it as follow to set the owner multiple times:
 
 ```javascript
-function testFailSetOwnerAgain() public {
+    function testFailSetOwnerAgain() public {
         wallet.setOwner(address(1));
 
         vm.prank(address(1));
@@ -304,7 +304,7 @@ function testFailSetOwnerAgain() public {
 But there is a shortcup to set `msg.sender` to `address(1)` for **multiple calls**
 
 ```javascript
-function testFailSetOwnerAgain() public {
+    function testFailSetOwnerAgain() public {
         wallet.setOwner(address(1));
 
         vm.startPrank(address(1));
