@@ -187,7 +187,7 @@ forge test --match-path test/Console.t.sol -vv
 
 Here is the result:
 
-```
+```sh
 Running 1 test for test/Console.t.sol:ConsoleTest
 [PASS] testLogSomething() (gas: 3392)
 Logs:
@@ -240,3 +240,81 @@ Logs:
 ```
 
 ## Authentication
+
+Using `Wallet.sol` contract, let's see how how to test authentication
+
+### Passing test
+
+(setOwner)
+
+### Fail test
+
+By naming the test function `testFailNotOwner()`, we are telling foundry that the code inside this function should fail
+
+Next, we call the function `vm()`to change `msg.sender`
+
+```javascript
+vm.prank(address(1));
+```
+
+Here we expect the function call to set the owner to fail
+
+```sh
+Running 2 tests for test/Auth.t.sol:AuthTest
+[PASS] testFailNotOwner() (gas: 10482)
+Traces:
+  [10482] AuthTest::testFailNotOwner()
+    ├─ [0] VM::prank(0x0000000000000000000000000000000000000001)
+    │   └─ ← ()
+    ├─ [2487] Wallet::setOwner(0x0000000000000000000000000000000000000001)
+    │   └─ ← "caller is not the owner"
+    └─ ← "caller is not the owner"
+
+[PASS] testSetOwner() (gas: 11615)
+Traces:
+  [11615] AuthTest::testSetOwner()
+    ├─ [5454] Wallet::setOwner(0x0000000000000000000000000000000000000001)
+    │   └─ ← ()
+    ├─ [347] Wallet::owner() [staticcall]
+    │   └─ ← 0x0000000000000000000000000000000000000001
+    └─ ← ()
+
+Test result: ok. 2 passed; 0 failed; finished in 848.41µs
+```
+
+What happens if we wanted to call a function multiple times using the same `msg.sender`?
+
+We can do it as follow to set the owner multiple times:
+
+```javascript
+function testFailSetOwnerAgain() public {
+        wallet.setOwner(address(1));
+
+        vm.prank(address(1));
+        wallet.setOwner(address(1));
+
+        vm.prank(address(1));
+        wallet.setOwner(address(1));
+
+        vm.prank(address(1));
+        wallet.setOwner(address(1));
+    }
+```
+
+But there is a shortcup to set `msg.sender` to `address(1)` for **multiple calls**
+
+```javascript
+function testFailSetOwnerAgain() public {
+        wallet.setOwner(address(1));
+
+        vm.startPrank(address(1));
+        // msg.sender = address(1)
+        wallet.setOwner(address(1));
+        wallet.setOwner(address(1));
+        wallet.setOwner(address(1));
+
+        vm.stopPrank();
+        // msg.sender = address(this)
+        wallet.setOwner(address(1));
+    }
+```
