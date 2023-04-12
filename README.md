@@ -148,7 +148,7 @@ forge fmt
 
 ## Console Log
 
-Let's examples of console logging in the `Counter.sol`contract, and also inside the `Counter.t.sol` test, and finally how to log `int`
+Let's see examples of console logging in the `Counter.sol`contract, and also inside the `Counter.t.sol` test, and finally how to log `int`
 
 ### Log from contract
 
@@ -202,7 +202,17 @@ For more details on which values you can log with the console log, using VS CODE
 
 Inside this file you can find all the variations for the messages that it can log.
 
-However, it can not log `int`
+However, it can not log `int` as we can see in the following compilation error
+
+```sh
+Compiler run failed
+error[9582]: TypeError: Member "log" not found or not visible after argument-dependent lookup in type(library console).
+  --> test/Console.t.sol:11:9:
+   |
+11 |         console.log(x);
+   |         ^^^^^^^^^^^
+
+```
 
 **_We will need to use a specialize function `logInt()`_**
 
@@ -220,5 +230,13 @@ contract ConsoleTest is Test {
 ```
 
 We'll need to use `console.logInt(x)` to log `-1`
+
+```sh
+Running 1 test for test/Console.t.sol:ConsoleTest
+[PASS] testLogSomething() (gas: 3731)
+Logs:
+  Log something here 123
+  -1
+```
 
 ## Authentication
