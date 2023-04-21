@@ -322,3 +322,89 @@ function testFailSetOwnerAgain() public {
     wallet.setOwner(address(1));
 }
 ```
+
+## Error
+
+- `vm.expectRevert`
+- `require` error message
+- custom error
+- label assertions
+
+### Test for errors (2 ways)
+
+To test for fail, we can do it like this:
+
+```javascript
+    function testFail() public {
+        err.throwError();
+    }
+```
+
+Or without prefixing with testFail by using `vm.expectRevert()`:
+
+```javascript
+    function testRevert() public {
+        vm.expectRevert();
+        err.throwError();
+    }
+```
+
+### Test for the require error message
+
+How do we test that the error that was thrown has the message "not authorized"?
+
+We'll use `vm.expectRevert()` by passing in the string
+
+```javascript
+vm.expectRevert(bytes("not authorized"));
+```
+
+### Test for custom errors
+
+Similar to testRequireMessage but this time we'll be passing in the custom error as input of `vm.expertRevert()`
+
+```javascript
+vm.expectRevert(Error.NotAuthorized.selector);
+```
+
+### Label assertions
+
+If we try the following test, it will fail, but foundry doesn't give us lot informations about where the code failed
+
+```javascript
+function testErrorLabel() public {
+        assertEq(uint256(1), uint256(1));
+        assertEq(uint256(1), uint256(1));
+        assertEq(uint256(1), uint256(1));
+        assertEq(uint256(1), uint256(2));
+        assertEq(uint256(1), uint256(1));
+    }
+```
+
+We can label the assertions
+
+```javascript
+function testErrorLabel() public {
+        assertEq(uint256(1), uint256(1), "test 1");
+        assertEq(uint256(1), uint256(1), "test 2");
+        assertEq(uint256(1), uint256(1), "test 3");
+        assertEq(uint256(1), uint256(1), "test 4");
+        assertEq(uint256(1), uint256(1), "test 5");
+    }
+```
+
+And execute the test command with more details
+
+```sh
+forge test --match-path test/Error.t.sol -vvv
+```
+
+As we can see, we get more details about the fail
+
+```sh
+Logs:
+  Error: test 4
+  Error: a == b not satisfied [uint]
+        Left: 1
+       Right: 2
+```
