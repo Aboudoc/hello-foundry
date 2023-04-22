@@ -408,3 +408,11 @@ Logs:
         Left: 1
        Right: 2
 ```
+
+## Event
+
+To test for the event is emitted or not, we are gonna be calling the function `vm.expectEmit()`
+
+- Tell foundry wich data to check
+- Emit the expected event
+- Call the function that should emit the event
