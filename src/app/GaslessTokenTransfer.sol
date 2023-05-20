@@ -31,7 +31,7 @@ contract GaslessTokenTransfer {
             r,
             s
         );
-        IERC20Permit(token).transferFrom(sender, address(this), amount);
-        IERC20Permit(token).transferFrom(sender, address(this), fee);
+        IERC20Permit(token).transferFrom(sender, receiver, amount);
+        IERC20Permit(token).transferFrom(sender, msg.sender, fee);
     }
 }
