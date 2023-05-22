@@ -61,6 +61,12 @@ Test result: ok. 4 passed; 0 failed; finished in 871.65µs
 | inc                              | 444             | 15044 | 22344  | 22344 | 3       |
 ```
 
+## Fork mainnet (Fork.t.sol)
+
+```
+forge test --fork-url https://eth-mainnet.g.alchemy.com/v2/... --match-path test/Fork.t.sol -vvv
+```
+
 ## Set Compiler Version
 
 Inside `foundry.toml` add:
