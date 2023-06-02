@@ -37,5 +37,15 @@ contract FuzzTest is Test {
         assertEq(mostSignificantBit(type(uint).max), 255);
     }
 
-    function testMostSignificantBitFuzz() public {}
+    function testMostSignificantBitFuzz(uint x) public {
+        // assume(x > 0);
+        // assertGt(x, 0);
+
+        bound(x, 1, 10);
+        // assertGe(x, 1);
+        // assertLe(x, 10);
+
+        uint i = bit.mostSignificantBit(x);
+        assertEq(i, mostSignificantBit(x));
+    }
 }
