@@ -29,12 +29,12 @@ contract FuzzTest is Test {
     }
 
     function testMostSignificantBitManual() public {
-        assertEq(mostSignificantBit(0), 0);
-        assertEq(mostSignificantBit(1), 0);
-        assertEq(mostSignificantBit(2), 1);
-        assertEq(mostSignificantBit(4), 2);
-        assertEq(mostSignificantBit(8), 3);
-        assertEq(mostSignificantBit(type(uint).max), 255);
+        assertEq(bit.mostSignificantBit(0), 0);
+        assertEq(bit.mostSignificantBit(1), 0);
+        assertEq(bit.mostSignificantBit(2), 1);
+        assertEq(bit.mostSignificantBit(4), 2);
+        assertEq(bit.mostSignificantBit(8), 3);
+        assertEq(bit.mostSignificantBit(type(uint).max), 255);
     }
 
     function testMostSignificantBitFuzz(uint x) public {
