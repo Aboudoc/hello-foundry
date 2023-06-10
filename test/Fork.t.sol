@@ -18,11 +18,11 @@ contract ForkTest is Test {
     }
 
     function testInc() public {
-        uint balanceBefore = weth.balanceOf(address(this));
+        uint256 balanceBefore = weth.balanceOf(address(this));
 
         weth.deposit{value: 100}();
 
-        uint balanceAfter = weth.balanceOf(address(this));
+        uint256 balanceAfter = weth.balanceOf(address(this));
 
         assertEq(balanceBefore, 0);
         assertEq(balanceAfter, 100);

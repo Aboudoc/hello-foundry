@@ -1,4 +1,10 @@
 // SPDX-License-Identifier: MIT
+// Topics
+// - Invariant
+// - Difference between fuzz and invariant
+// - Failing invariant
+// - Passing invariant
+// - Stats - runs, calls, reverts
 
 pragma solidity ^0.8.18;
 
@@ -9,6 +15,7 @@ contract IntroInvariant {
     function func_2() external {}
     function func_3() external {}
     function func_4() external {}
+
     function func_5() external {
         flag = true;
     }
@@ -23,9 +30,8 @@ contract IntroInvariantTest is Test {
         target = new IntroInvariant();
     }
 
-    // Failing invariant test 
+    // Failing invariant test
     function invariant_flag_is_always_false() public {
         assertEq(target.flag(), false);
     }
 }
-    

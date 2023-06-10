@@ -20,8 +20,8 @@ contract FuzzTest is Test {
         bit = new Bit();
     }
 
-    function mostSignificantBit(uint x) private pure returns (uint) {
-        uint i = 0;
+    function mostSignificantBit(uint256 x) private pure returns (uint256) {
+        uint256 i = 0;
         while ((x >>= 1) > 0) {
             i++;
         }
@@ -34,10 +34,10 @@ contract FuzzTest is Test {
         assertEq(bit.mostSignificantBit(2), 1);
         assertEq(bit.mostSignificantBit(4), 2);
         assertEq(bit.mostSignificantBit(8), 3);
-        assertEq(bit.mostSignificantBit(type(uint).max), 255);
+        assertEq(bit.mostSignificantBit(type(uint256).max), 255);
     }
 
-    function testMostSignificantBitFuzz(uint x) public {
+    function testMostSignificantBitFuzz(uint256 x) public {
         // assume(x > 0);
         // assertGt(x, 0);
 
@@ -45,7 +45,7 @@ contract FuzzTest is Test {
         // assertGe(x, 1);
         // assertLe(x, 10);
 
-        uint i = bit.mostSignificantBit(x);
+        uint256 i = bit.mostSignificantBit(x);
         assertEq(i, mostSignificantBit(x));
     }
 }

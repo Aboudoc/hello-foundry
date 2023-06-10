@@ -15,22 +15,14 @@ contract GaslessTokenTransfer {
         address token,
         address sender,
         address receiver,
-        uint amount,
-        uint fee,
+        uint256 amount,
+        uint256 fee,
         uint256 deadline,
         uint8 v,
         bytes32 r,
         bytes32 s
     ) external {
-        IERC20Permit(token).permit(
-            sender,
-            address(this),
-            amount + fee,
-            deadline,
-            v,
-            r,
-            s
-        );
+        IERC20Permit(token).permit(sender, address(this), amount + fee, deadline, v, r, s);
         IERC20Permit(token).transferFrom(sender, receiver, amount);
         IERC20Permit(token).transferFrom(sender, msg.sender, fee);
     }

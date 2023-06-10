@@ -6,7 +6,7 @@ import "forge-std/Test.sol";
 import "forge-std/console.sol";
 import {WETH} from "../../src/Weth.sol";
 
-// Note: open testing - randomly call all public functions 
+// Note: open testing - randomly call all public functions
 /*
     (runs: 256, calls: 3840, reverts: 2228)
     2228 reverts out of 3840 calls

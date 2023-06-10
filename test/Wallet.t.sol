@@ -12,7 +12,7 @@ contract WalletTest is Test {
     }
 
     function _send(uint256 amount) private {
-        (bool success, ) = address(wallet).call{value: amount}("");
+        (bool success,) = address(wallet).call{value: amount}("");
         require(success, "fail");
     }
 
@@ -21,7 +21,7 @@ contract WalletTest is Test {
     }
 
     function testSendEth() public {
-        uint bal = address(wallet).balance;
+        uint256 bal = address(wallet).balance;
 
         deal(address(1), 100);
         assertEq(address(1).balance, 100);
